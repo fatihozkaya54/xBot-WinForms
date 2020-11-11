@@ -171,7 +171,7 @@ namespace xBot.PK2Extractor
 				Log("Extracting Locale & Gateway");
 				LogState("Extracting...");
 				// Reading
-				Packet p = new Packet(0, false, false, pk2.GetFileBytes("DivisionInfo.txt"));
+				Packet p = new Packet(0, false, false, pk2.GetFileBytes("DIVISIONINFO.TXT"));
 				p.Lock();
 				this.Locale = p.ReadByte();
 				byte divisionCount = p.ReadByte();
@@ -206,7 +206,7 @@ namespace xBot.PK2Extractor
 				Log("Extracting Gateport");
 				LogState("Extracting...");
 				// Reading
-				Packet p = new Packet(0, false, false, pk2.GetFileBytes("Gateport.txt"));
+				Packet p = new Packet(0, false, false, pk2.GetFileBytes("GATEPORT.TXT"));
 				p.Lock();
 
 				string test = p.ReadString(p.RemainingRead());

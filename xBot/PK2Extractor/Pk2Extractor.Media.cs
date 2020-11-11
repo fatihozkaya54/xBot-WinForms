@@ -29,7 +29,7 @@ namespace xBot.PK2Extractor
 			// Check and save every icon available
 			foreach (NameValueCollection column in rows)
 			{
-				string iconPath = "icon\\" + column["icon"];
+				string iconPath = "icon\\COS\\" + column["icon"];
 				// Check if the icon exists into the pk2
 				Pk2File DDJFile = pk2.GetFile(iconPath);
 				if (DDJFile == null)
@@ -63,7 +63,7 @@ namespace xBot.PK2Extractor
 			LogState("Checking skill icon files...");
 			foreach (NameValueCollection column in rows)
 			{
-				string iconPath = "icon\\" + column["icon"];
+				string iconPath = "icon\\etc\\" + column["icon"];
 				// Check if the icon exists into the pk2
 				Pk2File DDJFile = pk2.GetFile(iconPath);
 				if (DDJFile == null)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.IO;
 using xBot.App;
 using xBot.Game;
@@ -231,7 +232,7 @@ namespace xBot.PK2Extractor
 			int formatIndex, formatCount;
 
 			// Keep memory safe
-			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\TextUISystem.txt")))
+			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\textuisystem.txt")))
 			{
 				while (!reader.EndOfStream)
 				{
@@ -317,11 +318,11 @@ namespace xBot.PK2Extractor
 			string name;
 
 			// short file, load all lines to memory
-			string[] files = pk2.GetFileText("server_dep\\silkroad\\textdata\\ItemData.txt").Split(new string[] { pk2_lineSplit }, StringSplitOptions.RemoveEmptyEntries);
+			string[] files = pk2.GetFileText("server_dep\\silkroad\\textdata\\itemdata.txt").Split(new string[] { pk2_lineSplit }, StringSplitOptions.RemoveEmptyEntries);
 			for (int i = 0; i < files.Length; i++)
 			{
 				// Keep memory safe
-				using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\" + files[i])))
+				using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\" + files[i].ToLower(new CultureInfo("en-US", false)))))
 				{
 					// using faster sqlite performance
 					db.Begin();
@@ -390,7 +391,7 @@ namespace xBot.PK2Extractor
 			string name;
 			List<string> items = new List<string>();
 
-			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\MagicOption.txt")))
+			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\magicoption.txt")))
 			{
 				// using faster sqlite performance
 				db.Begin();
@@ -515,7 +516,7 @@ namespace xBot.PK2Extractor
 			string name;
 
 			// short file, load all lines to memory
-			string[] files = pk2.GetFileText("server_dep\\silkroad\\textdata\\CharacterData.txt").Split(new string[] { pk2_lineSplit }, StringSplitOptions.RemoveEmptyEntries);
+			string[] files = pk2.GetFileText("server_dep\\silkroad\\textdata\\characterdata.txt").Split(new string[] { pk2_lineSplit }, StringSplitOptions.RemoveEmptyEntries);
 			for (int i = 0; i < files.Length; i++)
 			{
 				// Keep memory safe
@@ -587,7 +588,7 @@ namespace xBot.PK2Extractor
 			string name, desc, type;
 
 			// Keep memory safe
-			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\SkillMasteryData.txt")))
+			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\skillmasterydata.txt")))
 			{
 				// using faster sqlite performance
 				db.Begin();
@@ -669,7 +670,7 @@ namespace xBot.PK2Extractor
 			string[] skillparams = new string[30];
 
 			// short file, load all lines to memory
-			string[] files = pk2.GetFileText("server_dep\\silkroad\\textdata\\SkillDataEnc.txt").Split(new string[] { pk2_lineSplit }, StringSplitOptions.RemoveEmptyEntries);
+			string[] files = pk2.GetFileText("server_dep\\silkroad\\textdata\\skilldata.txt").Split(new string[] { pk2_lineSplit }, StringSplitOptions.RemoveEmptyEntries);
 			for (int i = 0; i < files.Length; i++)
 			{
 
@@ -1035,7 +1036,7 @@ namespace xBot.PK2Extractor
 			}
 			LogState("Loading refScrapOfPackageItem.txt");
       Dictionary<string, string[]> refScrapOfPackageItem = new Dictionary<string, string[]>();
-			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\refScrapOfPackageItem.txt")))
+			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\refscrapofpackageitem.txt")))
 			{
 				while (!reader.EndOfStream)
 				{
@@ -1181,7 +1182,7 @@ namespace xBot.PK2Extractor
 		{
 			TeleportData = new Dictionary<string, string[]>();
 
-			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\TeleportData.txt")))
+			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\teleportdata.txt")))
 			{
 				while (!reader.EndOfStream)
 				{
@@ -1200,7 +1201,7 @@ namespace xBot.PK2Extractor
 				}
 			}
 			TeleportBuildings = new Dictionary<string, string[]>();
-			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\TeleportBuilding.txt")))
+			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\teleportbuilding.txt")))
 			{
 				while (!reader.EndOfStream)
 				{
@@ -1236,7 +1237,7 @@ namespace xBot.PK2Extractor
 			string name;
 
 			TeleportBuildings = new Dictionary<string, string[]>();
-			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\TeleportBuilding.txt")))
+			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\teleportbuilding.txt")))
 			{
 				// using faster sqlite performance
 				db.Begin();
@@ -1306,7 +1307,7 @@ namespace xBot.PK2Extractor
 			// vars constantly used
 			string name, destination, tid1, tid2, tid3, tid4;
 
-			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\TeleportLink.txt")))
+			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\teleportlink.txt")))
 			{
 				// using faster sqlite performance
 				db.Begin();
@@ -1412,7 +1413,7 @@ namespace xBot.PK2Extractor
 		{
 			// Load Region names
 			Dictionary<string, string> RegionReferences = new Dictionary<string, string>();
-			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\TextZoneName.txt")))
+			using (StreamReader reader = new StreamReader(pk2.GetFileStream("server_dep\\silkroad\\textdata\\textzonename.txt")))
 			{
 				while (!reader.EndOfStream)
 				{
